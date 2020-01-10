@@ -1,0 +1,27 @@
+/*RESET UNIVERSAL*/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+/*Default*/
+.log_in {
+    background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.caja {
+    margin-top: 10%;
+    border: 2px;
+    border-radius: 12px;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+td{
+    border: black 1px solid;
+}
+tr{
+    border: black 1px solid;
+}
+/*Fin Default*/
