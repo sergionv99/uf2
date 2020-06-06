@@ -52,21 +52,24 @@ final class RegisterController extends Controller {
             }
 
             $pass= hash('sha256', $_POST['contrasenya']);
-            $params=[':usuari'=>$_POST['usuari'],
-                ':passwd' => $pass,
-                ':mail' => $_POST['mail'],
-                ':tlf' => $_POST['tlf'],
-                ':nom' => $_POST['name'],
-                ':l_name' => $_POST['l_name']];
+            $params=
+                [':password' => $pass,
+                ':email' => $_POST['email'],
+                ':name' => $_POST['name'],
+                ':surname' => $_POST['surname']];
             //todo: comprobar si el usuario ya existe
 
+
             if ($this->comprobar()){
-                $sql="INSERT INTO usuaris (usuari, contrasenya, mail, telefon, nom, cognoms) 
-                VALUES (:usuari, :passwd, :mail, :tlf, :nom, :l_name);";
+
+
+                $sql="INSERT INTO users (name, surname, password, email) 
+                VALUES (:name, :surname, :password, :email);";
                 $result = $this->getSingleResult($sql, $params);
+
                 if (!is_array($result)){
                     session_start();
-                    $_SESSION['user']=$_POST['usuari'];
+                    $_SESSION['user']=$_POST['name'];
                     header('location:/');
                     return true;
                 }else{
@@ -88,11 +91,10 @@ final class RegisterController extends Controller {
 
     public function comprobar(){
 
-        $params=[':usuari'=>$_POST['usuari'],
-            ':mail' => $_POST['mail'],
-            ':tlf' => $_POST['tlf']];
+        $params=
+            [':mail' => $_POST['email']];
 
-        $sql="SELECT * FROM usuaris WHERE usuari= :usuari OR mail=:mail OR telefon=:tlf;";
+        $sql="SELECT * FROM usuaris WHERE mail=:mail";
 
         return !is_array($result = $this->getSingleResult($sql, $params));
     }

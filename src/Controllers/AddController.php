@@ -46,11 +46,22 @@ final class AddController extends Controller
                 }
             }
             session_start();
-            $param=[":usuari"=>$_SESSION['user']];
-            $sql="SELECT id FROM usuaris WHERE usuari=:usuari;";
+            $param=[":email"=>$_SESSION['email']];
+            $sql="SELECT id FROM users WHERE email=:email";
             $result = $this->getSingleResult($sql,$param);
 
-            $sql="INSERT INTO productes ( `idTipusOferta`, `idTipusProducte`, `titulo`, `descripcio`, `preu`, `m2`, `idPropietari`, `direccio`, `cp`, `poblacio`, `provincia`) 
+
+            $params=
+                [   ':email' => $_POST['email'],
+                    ':name' => $_POST['name'],
+                    ':surname' => $_POST['surname']];
+
+
+                $sql="INSERT INTO properties (title, price, description, estado, tipo, user_id) 
+                VALUES (:name, :surname, :password, :email);";
+                $result = $this->getSingleResult($sql, $params);
+
+            $sql="INSERT INTO properties ( `idTipusOferta`, `idTipusProducte`, `titulo`, `descripcio`, `preu`, `m2`, `idPropietari`, `direccio`, `cp`, `poblacio`, `provincia`) 
             VALUES (".$_POST['select'].", ".$_POST['select2'].", '".$_POST['tit']."', '".$_POST['desc']."', ".$_POST['precio'].", ".$_POST['m2'].", ".$result['id'].", 'dsdsfdsf', 08850, '".$_POST['pob']."', 'bcn');";
             $result = $this->getSingleResult($sql, "");
             if (!is_array($result)){

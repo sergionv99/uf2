@@ -49,14 +49,15 @@ final class LoginController extends Controller {
                 }
             }
             $pass= hash('sha256', $_POST['contrasenya']);
-            $params=[':usuari'=>$_POST['usuari'],
+            $params=[':email'=>$_POST['email'],
                 ':passwd' => $pass];
 
-            $sql="SELECT * FROM usuaris WHERE usuari= :usuari AND contrasenya = :passwd;";
+            $sql="SELECT * FROM users WHERE email = :email AND password = :passwd;";
             $result = $this->getSingleResult($sql, $params);
+
             if (is_array($result)){
                 session_start();
-                $_SESSION['user']=$_POST['usuari'];
+                $_SESSION['user']=$_POST['email'];
                 header('location:/');
                 return true;
             }else{
