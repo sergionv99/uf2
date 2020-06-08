@@ -5,6 +5,4 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 
-//NC:	NOT HACER CASO A MAYUS
-//L:	ÚLTIMA REGLA
 RewriteRule ^.*$ index.php [NC,L]

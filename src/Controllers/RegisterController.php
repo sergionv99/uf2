@@ -17,7 +17,7 @@ final class RegisterController extends Controller {
 
     }
     public function index() {
-        $data = ['title'=>'Register'];
+        $data = ['title'=>'Registrate'];
         $this->render($data);
     }
 

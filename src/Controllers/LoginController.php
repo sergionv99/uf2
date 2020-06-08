@@ -7,14 +7,13 @@ use Rentit\Controller;
 
 final class LoginController extends Controller {
 
-    //PARA PUTO LLEGAR AQUÍ HAY QUE PONER EN LA MIERDA DE LA URL LO SIGUIENTE: http://localhost:8084 SEGUIDO DE LO QUE COÑO QUERAMOS
 
     public function __construct($request) {
         parent::__construct($request);
 
     }
     public function index() {
-        $data = ['title'=>'Log In'];
+        $data = ['title'=>'NUEVOCASAS'];
         $this->render($data);
     }
 
@@ -48,6 +47,8 @@ final class LoginController extends Controller {
                     ob_flush();
                 }
             }
+
+
             $pass= hash('sha256', $_POST['contrasenya']);
             $params=[':email'=>$_POST['email'],
                 ':passwd' => $pass];
@@ -70,5 +71,14 @@ final class LoginController extends Controller {
         } else{
             return false;
         }
+    }
+    public function logout(){
+
+        session_start();
+
+        unset($_SESSION['user']);
+
+            return header('Location: /');
+
     }
 }

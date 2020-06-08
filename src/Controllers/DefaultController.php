@@ -15,14 +15,20 @@ final class DefaultController extends Controller {
     }
     public function index() {
 
-        $data = ['title'=>'Construcciones para todos','html'=>''];
+        $total = $this->allproperties();
 
-        $data["html"]=$this->cargaDatos();
+        $data = ['title'=>'NUEVOCASAS','html'=>'','propiedades'=>$total];
+
         $this->render($data);
     }
 
     function error() { throw new \Exception("[ERROR::]:Non existent method"); }
 
+    public function allproperties(){
+        $sql = "SELECT * FROM properties";
+        $total = $this->getResults($sql);
+        return $total;
+    }
 
     public function getSingleResult($sql, $params = null)
     {
@@ -40,32 +46,4 @@ final class DefaultController extends Controller {
         return $resultados;
     }
 
-    private function cargaDatos(){
-        $sql= "SELECT * FROM productes ORDER BY id;";
-        $resultados = $this->getResults($sql,"");
-
-        $html= "<table><tr>";
-
-        $i=0;
-        session_start();
-        $mas_info="";
-
-        foreach ($resultados as $inmueble){
-            $i++;
-            if ($i==0){
-                $html.="<tr>";
-            }
-            if (isset($_SESSION['user'])){
-                $id=$inmueble['id'];
-                $mas_info="<br/><a href='/ficha/index/inmueble/".$id."'>Mas Info</a>";
-            }
-            $html.="<td>Titulo: ".$inmueble['titulo']."<br/>Poblacion: ".$inmueble['poblacio'].$mas_info."</td>";
-            if ($i==2){
-                $html.="</tr>";
-                $i=0;
-            }
-        }
-        $html.="</table>";
-        return $html;
-    }
 }

@@ -1,27 +1,84 @@
-/*RESET UNIVERSAL*/
+
 * {
     margin: 0px;
     padding: 0px;
 }
-/*Default*/
+
 .log_in {
-    background-color: lightgrey;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.cpropiedades{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .caja {
     margin-top: 10%;
     border: 2px;
     border-radius: 12px;
     text-align: center;
     background-color: aliceblue;
+    height: 40vh;
+    width: 25vw;
+}
+.zona-login{
+margin-top: 25px;
 }
 
+.titulazo{
+    text-align: center;
+    font-size: 48pt;
+    font-family: cursive;
+    margin-bottom: 4vh;
+}
+.titulos{
+    font-family: cursive;
+    font-size: 20pt;
+}
+#email{
+    margin-left: 40px;
+}
+#mail{
+    margin-left: 19px;
+}
+#pass{
+    margin-right: 27px;
+}
 td{
     border: black 1px solid;
 }
 tr{
     border: black 1px solid;
 }
-/*Fin Default*/
+
+.ficha{
+    margin-left: 10vh;
+    margin-right: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 50px;
+}
+.menu{
+ display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+.navegador{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.buscador-section{
+    text-align: center;
+    margin: 10px;
+}
+.img-back{
+    margin-top: 10vh;
+    height: 40vh;
+    width: 100%;
+    background-image: url("../../img/the-green-spine-melbourne-rascacielos-skyscraper-australia06052020in1.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

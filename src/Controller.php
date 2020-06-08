@@ -30,6 +30,7 @@ abstract class Controller implements View, Model {
         return $db;
     }
 
+
     /*
      * $db      =   BASE DE DATOS
      * $sql     =   SENTENCIA SQL
@@ -43,6 +44,7 @@ abstract class Controller implements View, Model {
             } else {
                 $res = $stmt->execute();
             }
+
             //AQUÍ DEBERÍAMOS USAR $RES PARA HACER UN RETURN DE LA SENTENCIA O BIEN UN ERROR;
             return $stmt;
         }catch (\PDOException $e) {

@@ -18,6 +18,10 @@ class App {
         $routes = self::getRoutes();
 
         $request = new Request();
+
+//        echo "<pre>";
+//        var_dump($request);
+
         $controller = $request->getController();
         $action = $request->getAction();
 
